@@ -3,8 +3,11 @@
     <string name="title_activity_maps">Map</string>
     <string name="address_input_instructions">Input address:</string>
     <string name="address_input">Address:</string>
-    <string name="mode_selection_instructions">Selection which type of information to see:</string>
+    <string name="mode_selection_instructions">Input range from 1988 - 2018</string>
     <string name="start_button">Start</string>
     <string name="date_range_instuctions">Input range from 1988 - 2019:</string>
     <string name="proximity_instructions">Input maximum distance from address:</string>
+    <string name="dateRange">1988-2019</string>
+
+
 </resources>

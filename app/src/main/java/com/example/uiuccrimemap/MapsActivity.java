@@ -31,6 +31,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MapsActivity.this, LaunchActivity.class));
+                System.out.println("User Switched back");
             }
         });
     }

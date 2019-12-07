@@ -19,7 +19,7 @@ public class LaunchActivity extends AppCompatActivity {
         launchStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //startActivity(new Intent(LaunchActivity.this, MapsActivity.class));
+            startActivity(new Intent(LaunchActivity.this, MapsActivity.class));
             System.out.println("User Switched to a Map filled with Markers indicating crimes.");
             }
         });

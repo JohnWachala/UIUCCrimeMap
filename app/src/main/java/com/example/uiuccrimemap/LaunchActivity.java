@@ -20,7 +20,7 @@ public class LaunchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
             startActivity(new Intent(LaunchActivity.this, MapsActivity.class));
-            System.out.println("User Switched to a Map filled with Markers indicating crimes.");
+            System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
             }
         });
     }

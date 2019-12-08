@@ -14,6 +14,13 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -35,7 +42,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
     }
+    public void getJSON() {
+        String Json;
+        try {
+            InputStream stream = getAssets().open("test1JSON.json");
+            int size = stream.available();
+            byte[] buffer = new byte[size];
+            stream.read();
+            stream.close();
+            Json = new String(buffer, "UTF-8");
+            JSONArray jsonArray = new JSONArray(Json);
 
+
+        } catch (IOException a) {
+            a.printStackTrace();
+        } catch (JSONException a) {
+            a.printStackTrace();
+        }
+
+    }
 
     /**
      * Manipulates the map once available.

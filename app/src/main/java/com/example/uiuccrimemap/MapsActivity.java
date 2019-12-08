@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,6 +34,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map2);
         mapFragment.getMapAsync(this);
+        getJSON();
         Button backButton = (Button) findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,10 +50,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             InputStream stream = getAssets().open("test1JSON.json");
             int size = stream.available();
             byte[] buffer = new byte[size];
-            stream.read();
+            stream.read(buffer);
             stream.close();
             Json = new String(buffer, "UTF-8");
             JSONArray jsonArray = new JSONArray(Json);
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject k = jsonArray.getJSONObject(i);
+
+            }
+            //for (JsonElement k : games) {
+            //   JsonObject kasObject = (JsonObject) k;
+            //   JsonArray player = kasObject.get("players").getAsJsonArray();
+            //   for (JsonElement i : player) {
+            //      JsonObject iasObject = (JsonObject) i;
 
 
         } catch (IOException a) {

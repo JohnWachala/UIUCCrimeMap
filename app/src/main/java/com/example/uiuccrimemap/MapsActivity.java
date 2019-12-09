@@ -2,6 +2,7 @@ package com.example.uiuccrimemap;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.animation.TypeConverter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -30,11 +31,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crimes);
+        getJSON();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map2);
         mapFragment.getMapAsync(this);
-        getJSON();
+
         Button backButton = (Button) findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
     public void getJSON() {
+        System.out.println("hello");
         String Json;
         try {
             InputStream stream = getAssets().open("test1JSON.json");
@@ -53,12 +56,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             stream.read(buffer);
             stream.close();
             Json = new String(buffer, "UTF-8");
-            JSONArray jsonArray = new JSONArray(Json);
+            JSONObject obj = new JSONObject(Json);
+            JSONArray array = obj.getJSONArray("data");
+            JSONArray first = array.getJSONArray(0);
+            JSONArray second = first.getJSONArray(38);
+            String lat = second.getString(1);
+            String lng = second.getString(2);
+            double latitude = second.getDouble(1);
+            double longitude = second.getDouble(2);
+            System.out.println("AAAAAAAAAAAA"+lat+"XXXXXXXXXXXXXXXX");
+            LatLng point = new LatLng(latitude, longitude);
 
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject k = jsonArray.getJSONObject(i);
+            //JSONArray json = new JSONArray(Json);
 
-            }
+            //JSONArray first = json.getJSONArray(0);
+            String one = first.getString(1);
+            System.out.println("BBBBBBBBBBB"+one+"XXXXXXXXXXXXXXXX");
+            //for (int i = 0; i < jsonArray.length(); i++) {
+             //   JSONArray k = jsonArray.getJSONArray(i);
+
+            //}
             //for (JsonElement k : games) {
             //   JsonObject kasObject = (JsonObject) k;
             //   JsonArray player = kasObject.get("players").getAsJsonArray();

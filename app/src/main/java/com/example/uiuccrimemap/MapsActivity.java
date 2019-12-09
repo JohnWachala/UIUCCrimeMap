@@ -76,12 +76,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             for (int i = 0; i < jArray.length(); i++) {
                 JSONArray first = jArray.getJSONArray(i);
                 JSONArray second = first.getJSONArray(38);
-                double lat = second.getDouble(1);
-                double lng = second.getDouble(2);
-                LatLng point = new LatLng(lat, lng);
-                MarkerOptions mark = new MarkerOptions().position(point);
-                Marker marker = mMap.addMarker(mark);
-                markList.add(marker);
+                if (second.isNull(1) == false) {
+
+                    double lat = second.getDouble(1);
+                    double lng = second.getDouble(2);
+                    LatLng point = new LatLng(lat, lng);
+                    MarkerOptions mark = new MarkerOptions().position(point);
+                    Marker marker = mMap.addMarker(mark);
+                    System.out.println("Marker at Lat: " + lat);
+                    markList.add(marker);
+                }
+
             }
             //JSONArray array = obj.getJSONArray("data");
             //JSONArray first = array.getJSONArray(0);

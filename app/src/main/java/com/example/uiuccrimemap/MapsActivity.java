@@ -30,17 +30,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng p;
     private GoogleMap mMap;
     private List<Marker> markList = new ArrayList<>();
-
+    private LatLng[] positions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crimes);
-        getJSON();
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map2);
-        mapFragment.getMapAsync(this);
+        mapFragment.getMapAsync(newMap -> {
+            // NONLINEAR CONTROL FLOW: Code in this block is called later, after onCreate ends
+            // It's a "callback" - it will be called eventually when the map is ready
+
+            // Set the map variable so it can be used by other functions
+            mMap = newMap;
+            // Center it on campustown
+            getJSON();
+        });
 
         Button backButton = (Button) findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +60,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
     public void getJSON() {
+
         System.out.println("hello");
         String Json;
         try {

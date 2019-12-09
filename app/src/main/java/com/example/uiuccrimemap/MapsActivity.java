@@ -13,6 +13,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
@@ -21,11 +22,15 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-
+    private LatLng p;
     private GoogleMap mMap;
+    private List<Marker> markList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,21 +62,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             stream.close();
             Json = new String(buffer, "UTF-8");
             JSONObject obj = new JSONObject(Json);
-            JSONArray array = obj.getJSONArray("data");
-            JSONArray first = array.getJSONArray(0);
-            JSONArray second = first.getJSONArray(38);
-            String lat = second.getString(1);
-            String lng = second.getString(2);
-            double latitude = second.getDouble(1);
-            double longitude = second.getDouble(2);
-            System.out.println("AAAAAAAAAAAA"+lat+"XXXXXXXXXXXXXXXX");
-            LatLng point = new LatLng(latitude, longitude);
+            JSONArray jArray = obj.getJSONArray("data");
+
+            for (int i = 0; i < jArray.length(); i++) {
+                JSONArray first = jArray.getJSONArray(i);
+                JSONArray second = first.getJSONArray(38);
+                double lat = second.getDouble(1);
+                double lng = second.getDouble(2);
+                LatLng point = new LatLng(lat, lng);
+                MarkerOptions mark = new MarkerOptions().position(point);
+                Marker marker = mMap.addMarker(mark);
+                markList.add(marker);
+            }
+            //JSONArray array = obj.getJSONArray("data");
+            //JSONArray first = array.getJSONArray(0);
+            //JSONArray second = first.getJSONArray(38);
+            //String lat = second.getString(1);
+            //String lng = second.getString(2);
+            //double latitude = second.getDouble(1);
+            //double longitude = second.getDouble(2);
+            //System.out.println("AAAAAAAAAAAA"+lat+"XXXXXXXXXXXXXXXX");
+            //p = new LatLng(latitude, longitude);
 
             //JSONArray json = new JSONArray(Json);
 
             //JSONArray first = json.getJSONArray(0);
-            String one = first.getString(1);
-            System.out.println("BBBBBBBBBBB"+one+"XXXXXXXXXXXXXXXX");
+            //String one = first.getString(1);
+            //System.out.println("BBBBBBBBBBB"+one+"XXXXXXXXXXXXXXXX");
             //for (int i = 0; i < jsonArray.length(); i++) {
              //   JSONArray k = jsonArray.getJSONArray(i);
 
@@ -107,6 +124,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        //mMap.addMarker(new MarkerOptions().position(p));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(p));
     }
 }

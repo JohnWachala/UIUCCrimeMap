@@ -1,5 +1,5 @@
 {
-  "data":[
+  "data": [
     [
       "row-6evi_2kiw~icsd",
       "00000000-0000-0000-FA4C-6402DA1FC172",
@@ -47,7 +47,56 @@
         false
       ],
       "20921"
+    ],
+    [
+      "row-ri6m.wga5~eft6",
+      "00000000-0000-0000-FCED-299DFC0A1685",
+      0,
+      1559575919,
+      null,
+      1559576348,
+      null,
+      "{ }",
+      "U95-04820",
+      "1995-08-27T00:00:00",
+      "00:01",
+      "1995",
+      "8",
+      "1995-08-27T00:00:00",
+      "08:56",
+      "1995-08-27T00:00:00",
+      "00:00",
+      "576-10",
+      "600 BLOCK",
+      "E WASHINGTON ST",
+      "6578",
+      "ACCIDENT HIT AND RUN",
+      "C37",
+      "Accident",
+      "COMMITTED",
+      "304",
+      "STREET",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      "00",
+      null,
+      "09",
+      "ADMINISTRATIVELY CLOSED",
+      "1",
+      [
+        "{\"address\": \"600 E WASHINGTON ST\", \"city\": \"URBANA\", \"state\": \"IL\", \"zip\": \"\"}",
+        "40.105661",
+        "-88.201264",
+        null,
+        false
+      ],
+      "20921"
     ]
   ]
+
 
 }
